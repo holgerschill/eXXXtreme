@@ -61,7 +61,7 @@ class H2MetaDataAccess {
 		tables
 	}
 
-	private def toCamelCase(String name) {
+	def toCamelCase(String name) {
 		CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, name)
 	}
 
