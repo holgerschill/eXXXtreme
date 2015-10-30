@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.eXXXtreme.tutorial/src-gen" modelPluginID="org.eclipse.eXXXtreme.tutorial"
+    forceOverwrite="true" modelName="Tutorial" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.11" usedGenPackages="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase">
+  <genPackages prefix="Tutorial" basePackage="org.eclipse.eXXXtreme" disposableProviderFactory="true"
+      fileExtensions="h2db" ecorePackage="Tutorial.ecore#/">
+    <genClasses ecoreClass="Tutorial.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tutorial.ecore#//Model/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tutorial.ecore#//Model/h2Path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tutorial.ecore#//Model/queries"/>
+    </genClasses>
+    <genClasses ecoreClass="Tutorial.ecore#//Query">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tutorial.ecore#//Query/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tutorial.ecore#//Query/table"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tutorial.ecore#//Query/expression"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

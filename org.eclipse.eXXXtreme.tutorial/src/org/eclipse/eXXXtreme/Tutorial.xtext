@@ -1,0 +1,12 @@
+grammar org.eclipse.eXXXtreme.Tutorial with org.eclipse.xtext.xbase.Xbase
+
+generate tutorial "http://www.eclipse.org/eXXXtreme/Tutorial"
+
+Model:
+	'DBName' name=ValidID 'h2File' h2Path=STRING
+		queries+=Query*
+	;
+
+Query:
+	'query' name=ValidID table=JvmTypeReference expression=XBlockExpression
+;
