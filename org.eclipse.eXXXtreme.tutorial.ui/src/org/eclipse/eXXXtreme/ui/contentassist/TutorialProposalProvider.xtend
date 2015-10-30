@@ -4,7 +4,7 @@
 package org.eclipse.eXXXtreme.ui.contentassist
 
 import com.google.inject.Inject
-import org.eclipse.eXXXtreme.tutorial.Query
+//import org.eclipse.eXXXtreme.tutorial.Query
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.Assignment
@@ -24,25 +24,25 @@ class TutorialProposalProvider extends AbstractTutorialProposalProvider {
 	@Inject
 	TypeReferences typeReferences
 
-	override completeJavaTypes(ContentAssistContext context, EReference reference,
-		ICompletionProposalAcceptor acceptor) {
-		completeJavaTypes(context, reference, qualifiedNameValueConverter, createVisibilityFilter(context), acceptor);
-	}
-
-	override completeQuery_Table(EObject model, Assignment assignment, ContentAssistContext context, 
-		ICompletionProposalAcceptor acceptor) {
-		typesProposalProvider.createSubTypeProposals(typeReferences.findDeclaredType("org.eclipse.eXXXtreme.tutorial.ITable",model), this, context,
-			TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, TypeMatchFilters.canInstantiate, acceptor)
-	}
-	
-	override completeJvmParameterizedTypeReference_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		val query = EcoreUtil2.getContainerOfType(model,Query)
-		if(query != null) {
-			typesProposalProvider.createSubTypeProposals(typeReferences.findDeclaredType("org.eclipse.eXXXtreme.tutorial.ITable",model), this, context,
-			TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, TypeMatchFilters.canInstantiate, acceptor)
-		} else
-			super.completeJvmParameterizedTypeReference_Type(model, assignment, context, acceptor)
-		
-	}
+//	override completeJavaTypes(ContentAssistContext context, EReference reference,
+//		ICompletionProposalAcceptor acceptor) {
+//		completeJavaTypes(context, reference, qualifiedNameValueConverter, createVisibilityFilter(context), acceptor);
+//	}
+//
+//	override completeQuery_Table(EObject model, Assignment assignment, ContentAssistContext context, 
+//		ICompletionProposalAcceptor acceptor) {
+//		typesProposalProvider.createSubTypeProposals(typeReferences.findDeclaredType("org.eclipse.eXXXtreme.tutorial.ITable",model), this, context,
+//			TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, TypeMatchFilters.canInstantiate, acceptor)
+//	}
+//	
+//	override completeJvmParameterizedTypeReference_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+//		val query = EcoreUtil2.getContainerOfType(model,Query)
+//		if(query != null) {
+//			typesProposalProvider.createSubTypeProposals(typeReferences.findDeclaredType("org.eclipse.eXXXtreme.tutorial.ITable",model), this, context,
+//			TypesPackage.Literals.JVM_PARAMETERIZED_TYPE_REFERENCE__TYPE, TypeMatchFilters.canInstantiate, acceptor)
+//		} else
+//			super.completeJvmParameterizedTypeReference_Type(model, assignment, context, acceptor)
+//		
+//	}
 	
 }

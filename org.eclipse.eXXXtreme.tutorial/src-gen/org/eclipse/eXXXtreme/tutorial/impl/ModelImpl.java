@@ -2,25 +2,15 @@
  */
 package org.eclipse.eXXXtreme.tutorial.impl;
 
-import java.util.Collection;
-
 import org.eclipse.eXXXtreme.tutorial.Model;
-import org.eclipse.eXXXtreme.tutorial.Query;
 import org.eclipse.eXXXtreme.tutorial.TutorialPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link org.eclipse.eXXXtreme.tutorial.impl.ModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.eXXXtreme.tutorial.impl.ModelImpl#getH2Path <em>H2 Path</em>}</li>
- *   <li>{@link org.eclipse.eXXXtreme.tutorial.impl.ModelImpl#getQueries <em>Queries</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,16 +67,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected String h2Path = H2_PATH_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getQueries() <em>Queries</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getQueries()
-   * @generated
-   * @ordered
-   */
-  protected EList<Query> queries;
 
   /**
    * <!-- begin-user-doc -->
@@ -161,36 +140,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Query> getQueries()
-  {
-    if (queries == null)
-    {
-      queries = new EObjectContainmentEList<Query>(Query.class, this, TutorialPackage.MODEL__QUERIES);
-    }
-    return queries;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case TutorialPackage.MODEL__QUERIES:
-        return ((InternalEList<?>)getQueries()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -200,8 +149,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return getName();
       case TutorialPackage.MODEL__H2_PATH:
         return getH2Path();
-      case TutorialPackage.MODEL__QUERIES:
-        return getQueries();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -211,7 +158,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -222,10 +168,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return;
       case TutorialPackage.MODEL__H2_PATH:
         setH2Path((String)newValue);
-        return;
-      case TutorialPackage.MODEL__QUERIES:
-        getQueries().clear();
-        getQueries().addAll((Collection<? extends Query>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -247,9 +189,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case TutorialPackage.MODEL__H2_PATH:
         setH2Path(H2_PATH_EDEFAULT);
         return;
-      case TutorialPackage.MODEL__QUERIES:
-        getQueries().clear();
-        return;
     }
     super.eUnset(featureID);
   }
@@ -268,8 +207,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case TutorialPackage.MODEL__H2_PATH:
         return H2_PATH_EDEFAULT == null ? h2Path != null : !H2_PATH_EDEFAULT.equals(h2Path);
-      case TutorialPackage.MODEL__QUERIES:
-        return queries != null && !queries.isEmpty();
     }
     return super.eIsSet(featureID);
   }

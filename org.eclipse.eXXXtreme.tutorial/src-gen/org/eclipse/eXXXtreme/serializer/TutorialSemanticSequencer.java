@@ -7,7 +7,6 @@ import com.google.inject.Inject;
 import java.util.Set;
 import org.eclipse.eXXXtreme.services.TutorialGrammarAccess;
 import org.eclipse.eXXXtreme.tutorial.Model;
-import org.eclipse.eXXXtreme.tutorial.Query;
 import org.eclipse.eXXXtreme.tutorial.TutorialPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -80,9 +79,6 @@ public class TutorialSemanticSequencer extends XbaseSemanticSequencer {
 			switch (semanticObject.eClass().getClassifierID()) {
 			case TutorialPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
-				return; 
-			case TutorialPackage.QUERY:
-				sequence_Query(context, (Query) semanticObject); 
 				return; 
 			}
 		else if (epackage == TypesPackage.eINSTANCE)
@@ -333,33 +329,18 @@ public class TutorialSemanticSequencer extends XbaseSemanticSequencer {
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     (name=ValidID h2Path=STRING queries+=Query*)
+	 *     (name=ValidID h2Path=STRING)
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Query returns Query
-	 *
-	 * Constraint:
-	 *     (name=ValidID table=JvmTypeReference expression=XBlockExpression)
-	 */
-	protected void sequence_Query(ISerializationContext context, Query semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TutorialPackage.Literals.QUERY__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TutorialPackage.Literals.QUERY__NAME));
-			if (transientValues.isValueTransient(semanticObject, TutorialPackage.Literals.QUERY__TABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TutorialPackage.Literals.QUERY__TABLE));
-			if (transientValues.isValueTransient(semanticObject, TutorialPackage.Literals.QUERY__EXPRESSION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TutorialPackage.Literals.QUERY__EXPRESSION));
+			if (transientValues.isValueTransient(semanticObject, TutorialPackage.Literals.MODEL__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TutorialPackage.Literals.MODEL__NAME));
+			if (transientValues.isValueTransient(semanticObject, TutorialPackage.Literals.MODEL__H2_PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TutorialPackage.Literals.MODEL__H2_PATH));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getQueryAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getQueryAccess().getTableJvmTypeReferenceParserRuleCall_2_0(), semanticObject.getTable());
-		feeder.accept(grammarAccess.getQueryAccess().getExpressionXBlockExpressionParserRuleCall_3_0(), semanticObject.getExpression());
+		feeder.accept(grammarAccess.getModelAccess().getNameValidIDParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getModelAccess().getH2PathSTRINGTerminalRuleCall_3_0(), semanticObject.getH2Path());
 		feeder.finish();
 	}
 	

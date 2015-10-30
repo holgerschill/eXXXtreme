@@ -5,7 +5,6 @@ package org.eclipse.eXXXtreme.tutorial;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,68 +84,13 @@ public interface TutorialPackage extends EPackage
   int MODEL__H2_PATH = 1;
 
   /**
-   * The feature id for the '<em><b>Queries</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MODEL__QUERIES = 2;
-
-  /**
    * The number of structural features of the '<em>Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.eXXXtreme.tutorial.impl.QueryImpl <em>Query</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.eXXXtreme.tutorial.impl.QueryImpl
-   * @see org.eclipse.eXXXtreme.tutorial.impl.TutorialPackageImpl#getQuery()
-   * @generated
-   */
-  int QUERY = 1;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUERY__NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Table</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUERY__TABLE = 1;
-
-  /**
-   * The feature id for the '<em><b>Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUERY__EXPRESSION = 2;
-
-  /**
-   * The number of structural features of the '<em>Query</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUERY_FEATURE_COUNT = 3;
+  int MODEL_FEATURE_COUNT = 2;
 
 
   /**
@@ -180,60 +124,6 @@ public interface TutorialPackage extends EPackage
    * @generated
    */
   EAttribute getModel_H2Path();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.eXXXtreme.tutorial.Model#getQueries <em>Queries</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Queries</em>'.
-   * @see org.eclipse.eXXXtreme.tutorial.Model#getQueries()
-   * @see #getModel()
-   * @generated
-   */
-  EReference getModel_Queries();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.eXXXtreme.tutorial.Query <em>Query</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Query</em>'.
-   * @see org.eclipse.eXXXtreme.tutorial.Query
-   * @generated
-   */
-  EClass getQuery();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.eXXXtreme.tutorial.Query#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.eXXXtreme.tutorial.Query#getName()
-   * @see #getQuery()
-   * @generated
-   */
-  EAttribute getQuery_Name();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.eXXXtreme.tutorial.Query#getTable <em>Table</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Table</em>'.
-   * @see org.eclipse.eXXXtreme.tutorial.Query#getTable()
-   * @see #getQuery()
-   * @generated
-   */
-  EReference getQuery_Table();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.eXXXtreme.tutorial.Query#getExpression <em>Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression</em>'.
-   * @see org.eclipse.eXXXtreme.tutorial.Query#getExpression()
-   * @see #getQuery()
-   * @generated
-   */
-  EReference getQuery_Expression();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -283,48 +173,6 @@ public interface TutorialPackage extends EPackage
      * @generated
      */
     EAttribute MODEL__H2_PATH = eINSTANCE.getModel_H2Path();
-
-    /**
-     * The meta object literal for the '<em><b>Queries</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODEL__QUERIES = eINSTANCE.getModel_Queries();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.eXXXtreme.tutorial.impl.QueryImpl <em>Query</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.eXXXtreme.tutorial.impl.QueryImpl
-     * @see org.eclipse.eXXXtreme.tutorial.impl.TutorialPackageImpl#getQuery()
-     * @generated
-     */
-    EClass QUERY = eINSTANCE.getQuery();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute QUERY__NAME = eINSTANCE.getQuery_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Table</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference QUERY__TABLE = eINSTANCE.getQuery_Table();
-
-    /**
-     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference QUERY__EXPRESSION = eINSTANCE.getQuery_Expression();
 
   }
 

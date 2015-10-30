@@ -5,7 +5,6 @@ package org.eclipse.eXXXtreme.validation
 
 import com.google.inject.Inject
 import java.io.File
-import java.util.Set
 import org.eclipse.eXXXtreme.h2.H2MetaDataAccess
 import org.eclipse.eXXXtreme.tutorial.Model
 import org.eclipse.eXXXtreme.tutorial.TutorialPackage
@@ -30,15 +29,6 @@ class TutorialValidator extends AbstractTutorialValidator {
 		val file = new File(model.getProjectPath +  "/" + h2Path + ".mv.db")
 		if(!file.exists){
 			error("File does not exist!", TutorialPackage.Literals.MODEL__H2_PATH)
-		}
-	}
-	@Check
-	def checkUniqueQueryNames(Model model){
-		val Set<String> names = newHashSet()
-		for(query : model.queries){
-			if(!names.add(query.name)){
-				error("Name of query is not unique!", query, TutorialPackage.Literals.QUERY__NAME)
-			}
 		}
 	}
 	

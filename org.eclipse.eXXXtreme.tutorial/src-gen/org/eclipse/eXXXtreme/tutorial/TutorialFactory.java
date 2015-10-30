@@ -32,15 +32,6 @@ public interface TutorialFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Query</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Query</em>'.
-   * @generated
-   */
-  Query createQuery();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

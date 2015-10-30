@@ -31,15 +31,12 @@ public class TutorialGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cH2FileKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cH2PathAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cH2PathSTRINGTerminalRuleCall_3_0 = (RuleCall)cH2PathAssignment_3.eContents().get(0);
-		private final Assignment cQueriesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cQueriesQueryParserRuleCall_4_0 = (RuleCall)cQueriesAssignment_4.eContents().get(0);
 		
 		//Model:
-		//	'DBName' name=ValidID 'h2File' h2Path=STRING
-		//	queries+=Query*;
+		//	'DBName' name=ValidID 'h2File' h2Path=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'DBName' name=ValidID 'h2File' h2Path=STRING queries+=Query*
+		//'DBName' name=ValidID 'h2File' h2Path=STRING
 		public Group getGroup() { return cGroup; }
 		
 		//'DBName'
@@ -59,56 +56,10 @@ public class TutorialGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//STRING
 		public RuleCall getH2PathSTRINGTerminalRuleCall_3_0() { return cH2PathSTRINGTerminalRuleCall_3_0; }
-		
-		//queries+=Query*
-		public Assignment getQueriesAssignment_4() { return cQueriesAssignment_4; }
-		
-		//Query
-		public RuleCall getQueriesQueryParserRuleCall_4_0() { return cQueriesQueryParserRuleCall_4_0; }
-	}
-	public class QueryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.eXXXtreme.Tutorial.Query");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cQueryKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cTableAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTableJvmTypeReferenceParserRuleCall_2_0 = (RuleCall)cTableAssignment_2.eContents().get(0);
-		private final Assignment cExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExpressionXBlockExpressionParserRuleCall_3_0 = (RuleCall)cExpressionAssignment_3.eContents().get(0);
-		
-		//Query:
-		//	'query' name=ValidID table=JvmTypeReference expression=XBlockExpression;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'query' name=ValidID table=JvmTypeReference expression=XBlockExpression
-		public Group getGroup() { return cGroup; }
-		
-		//'query'
-		public Keyword getQueryKeyword_0() { return cQueryKeyword_0; }
-		
-		//name=ValidID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
-		
-		//table=JvmTypeReference
-		public Assignment getTableAssignment_2() { return cTableAssignment_2; }
-		
-		//JvmTypeReference
-		public RuleCall getTableJvmTypeReferenceParserRuleCall_2_0() { return cTableJvmTypeReferenceParserRuleCall_2_0; }
-		
-		//expression=XBlockExpression
-		public Assignment getExpressionAssignment_3() { return cExpressionAssignment_3; }
-		
-		//XBlockExpression
-		public RuleCall getExpressionXBlockExpressionParserRuleCall_3_0() { return cExpressionXBlockExpressionParserRuleCall_3_0; }
 	}
 	
 	
 	private final ModelElements pModel;
-	private final QueryElements pQuery;
 	
 	private final Grammar grammar;
 	
@@ -120,7 +71,6 @@ public class TutorialGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaXbase = gaXbase;
 		this.pModel = new ModelElements();
-		this.pQuery = new QueryElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -151,24 +101,13 @@ public class TutorialGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	'DBName' name=ValidID 'h2File' h2Path=STRING
-	//	queries+=Query*;
+	//	'DBName' name=ValidID 'h2File' h2Path=STRING;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
 	
 	public ParserRule getModelRule() {
 		return getModelAccess().getRule();
-	}
-	
-	//Query:
-	//	'query' name=ValidID table=JvmTypeReference expression=XBlockExpression;
-	public QueryElements getQueryAccess() {
-		return pQuery;
-	}
-	
-	public ParserRule getQueryRule() {
-		return getQueryAccess().getRule();
 	}
 	
 	//XExpression:
