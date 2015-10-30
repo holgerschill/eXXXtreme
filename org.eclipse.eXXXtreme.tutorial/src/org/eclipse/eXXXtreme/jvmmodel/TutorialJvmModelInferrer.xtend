@@ -38,7 +38,23 @@ class TutorialJvmModelInferrer extends AbstractModelInferrer {
    				// getConnection is defined in the super type 
    				initializer = '''getConnection("«path + "/" + model.h2Path»")'''
    			]
-   			
+   			members += model.toMethod("main", typeRef(void))[
+   				parameters += model.toParameter("args",typeRef(String).addArrayTypeDimension)
+   				static = true
+   				varArgs = true
+   				exceptions += typeRef(SQLException)
+   				body = '''
+					try{
+						«FOR query : model.queries»
+							«model.name».«query.name»(«model.name»._«query.name»TableContent);
+						«ENDFOR»
+					} catch (Exception e) {
+						e.printStackTrace(); // superior exception handling
+					} finally {
+						«model.name».conn.close();
+					}
+   				'''
+   			]
 			for(query : model.queries) {
 				val tableType = typeRef(List, query.table)
 				members += query.toField("_" + query.name+ "TableContent", tableType) [
