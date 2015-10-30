@@ -4,6 +4,7 @@
 package org.eclipse.eXXXtreme.jvmmodel
 
 import com.google.inject.Inject
+import java.util.List
 import org.eclipse.eXXXtreme.h2.H2MetaDataAccess
 import org.eclipse.eXXXtreme.tutorial.Model
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
@@ -28,6 +29,14 @@ class TutorialJvmModelInferrer extends AbstractModelInferrer {
 	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		val path = getProjectPath(model)
 		acceptor.accept(model.toClass(model.name)) [
+			
+			for(query : model.queries) {
+				members += query.toMethod(query.name, inferredType)[
+					static = true
+					parameters += query.toParameter("it", typeRef(List, query.table))
+					body = query.expression
+				]
+			}
 
 			for (tableInfo : getTableInfos(path + "/" + model.h2Path)) {
 				acceptor.accept(model.toClass(tableInfo.name)) [

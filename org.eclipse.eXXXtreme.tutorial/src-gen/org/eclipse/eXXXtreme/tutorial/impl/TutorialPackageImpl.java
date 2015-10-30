@@ -3,14 +3,20 @@
 package org.eclipse.eXXXtreme.tutorial.impl;
 
 import org.eclipse.eXXXtreme.tutorial.Model;
+import org.eclipse.eXXXtreme.tutorial.Query;
 import org.eclipse.eXXXtreme.tutorial.TutorialFactory;
 import org.eclipse.eXXXtreme.tutorial.TutorialPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.xtext.common.types.TypesPackage;
+
+import org.eclipse.xtext.xbase.XbasePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +32,13 @@ public class TutorialPackageImpl extends EPackageImpl implements TutorialPackage
    * @generated
    */
   private EClass modelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass queryEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -74,6 +87,9 @@ public class TutorialPackageImpl extends EPackageImpl implements TutorialPackage
     TutorialPackageImpl theTutorialPackage = (TutorialPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TutorialPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TutorialPackageImpl());
 
     isInited = true;
+
+    // Initialize simple dependencies
+    XbasePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theTutorialPackage.createPackageContents();
@@ -125,6 +141,56 @@ public class TutorialPackageImpl extends EPackageImpl implements TutorialPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getModel_Queries()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getQuery()
+  {
+    return queryEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getQuery_Name()
+  {
+    return (EAttribute)queryEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuery_Table()
+  {
+    return (EReference)queryEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQuery_Expression()
+  {
+    return (EReference)queryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public TutorialFactory getTutorialFactory()
   {
     return (TutorialFactory)getEFactoryInstance();
@@ -153,6 +219,12 @@ public class TutorialPackageImpl extends EPackageImpl implements TutorialPackage
     modelEClass = createEClass(MODEL);
     createEAttribute(modelEClass, MODEL__NAME);
     createEAttribute(modelEClass, MODEL__H2_PATH);
+    createEReference(modelEClass, MODEL__QUERIES);
+
+    queryEClass = createEClass(QUERY);
+    createEAttribute(queryEClass, QUERY__NAME);
+    createEReference(queryEClass, QUERY__TABLE);
+    createEReference(queryEClass, QUERY__EXPRESSION);
   }
 
   /**
@@ -179,6 +251,10 @@ public class TutorialPackageImpl extends EPackageImpl implements TutorialPackage
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Obtain other dependent packages
+    TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+    XbasePackage theXbasePackage = (XbasePackage)EPackage.Registry.INSTANCE.getEPackage(XbasePackage.eNS_URI);
+
     // Create type parameters
 
     // Set bounds for type parameters
@@ -189,6 +265,12 @@ public class TutorialPackageImpl extends EPackageImpl implements TutorialPackage
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getModel_H2Path(), ecorePackage.getEString(), "h2Path", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Queries(), this.getQuery(), null, "queries", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getQuery_Name(), ecorePackage.getEString(), "name", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuery_Table(), theTypesPackage.getJvmTypeReference(), null, "table", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQuery_Expression(), theXbasePackage.getXExpression(), null, "expression", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

@@ -65,6 +65,7 @@ public class TutorialFactoryImpl extends EFactoryImpl implements TutorialFactory
     switch (eClass.getClassifierID())
     {
       case TutorialPackage.MODEL: return createModel();
+      case TutorialPackage.QUERY: return createQuery();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -79,6 +80,17 @@ public class TutorialFactoryImpl extends EFactoryImpl implements TutorialFactory
   {
     ModelImpl model = new ModelImpl();
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Query createQuery()
+  {
+    QueryImpl query = new QueryImpl();
+    return query;
   }
 
   /**
