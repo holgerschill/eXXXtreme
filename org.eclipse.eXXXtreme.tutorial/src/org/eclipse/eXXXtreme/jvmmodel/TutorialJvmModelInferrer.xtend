@@ -12,23 +12,35 @@ import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
- *
+ * 
  * <p>The JVM model should contain all elements that would appear in the Java code 
  * which is generated from the source model. Other models link against the JVM model rather than the source model.</p>     
  */
 class TutorialJvmModelInferrer extends AbstractModelInferrer {
 
-    /**
-     * convenience API to build and initialize JVM types and their members.
-     */
+	/**
+	 * convenience API to build and initialize JVM types and their members.
+	 */
 	@Inject extension JvmTypesBuilder
 
 	@Inject extension H2MetaDataAccess
 
+	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+		val path = getProjectPath(model)
+		acceptor.accept(model.toClass(model.name)) [
 
-   	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-   		val path = getProjectPath(model)
-   		
-   	}
-	
+			for (tableInfo : getTableInfos(path + "/" + model.h2Path)) {
+				acceptor.accept(model.toClass(tableInfo.name)) [
+					// all our table representations implement a common interface
+					superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.ITable")
+					for (column : tableInfo.columns) {
+						val columnName = column.name.toLowerCase
+						members += model.toField(columnName, typeRef(column.typeName))
+						members += model.toGetter(columnName, typeRef(column.typeName))
+						members += model.toSetter(columnName, typeRef(column.typeName))
+					}
+				]
+			}
+		]
+	}
 }
