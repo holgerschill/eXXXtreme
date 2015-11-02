@@ -29,9 +29,9 @@ class TutorialJvmModelInferrer extends AbstractModelInferrer {
 	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		val path = getProjectPath(model)
 		acceptor.accept(model.toClass(model.name)) [
-			
-			for(query : model.queries) {
-				members += query.toMethod(query.name, inferredType)[
+
+			for (query : model.queries) {
+				members += query.toMethod(query.name, inferredType) [
 					static = true
 					parameters += query.toParameter("it", typeRef(List, query.table))
 					body = query.expression
@@ -43,7 +43,7 @@ class TutorialJvmModelInferrer extends AbstractModelInferrer {
 					// all our table representations implement a common interface
 					superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.ITable")
 					for (column : tableInfo.columns) {
-						val columnName = column.name.toLowerCase
+						val columnName = column.name.toFirstLower
 						members += model.toField(columnName, typeRef(column.typeName))
 						members += model.toGetter(columnName, typeRef(column.typeName))
 						members += model.toSetter(columnName, typeRef(column.typeName))
