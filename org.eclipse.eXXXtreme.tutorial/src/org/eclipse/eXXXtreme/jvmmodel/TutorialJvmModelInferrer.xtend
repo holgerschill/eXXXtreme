@@ -34,7 +34,7 @@ class TutorialJvmModelInferrer extends AbstractModelInferrer {
 					// all our table representations implement a common interface
 					superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.ITable")
 					for (column : tableInfo.columns) {
-						val columnName = column.name.toLowerCase
+						val columnName = column.name.toFirstLower
 						members += model.toField(columnName, typeRef(column.typeName))
 						members += model.toGetter(columnName, typeRef(column.typeName))
 						members += model.toSetter(columnName, typeRef(column.typeName))
