@@ -29,5 +29,6 @@ query maxHorsePowerVehicle Vehicle {
  */
 query avgCO2 TestResults {
 	val result = Assertions.unknown
+	// Uhoh, it's not a Volkswagen
 	Assertions.checkResult(result, 'Mercedes-Benz')
 }
