@@ -25,10 +25,9 @@ query maxHorsePowerVehicle Vehicle {
 }
 
 /**
- * The make of the vehicle that was tested with the highest avg of CO (coefa, coefb, coefc).
+ * The make of the vehicle that was tested with the highest avg of CO2
  */
 query avgCO2 TestResults {
 	val result = Assertions.unknown
-	// Uhoh, it's not Volkswagen
-	Assertions.checkResult(result, 'MASERATI')
+	Assertions.checkResult(result, 'Mercedes-Benz')
 }
