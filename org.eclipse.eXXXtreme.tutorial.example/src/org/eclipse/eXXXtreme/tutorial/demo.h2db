@@ -1,6 +1,6 @@
 DBName Car h2File "db/car" 
    
-query myQuery Cardata { 
-	it.filter[it.vehmfrcode == "ADX"].forEach[println(it.vehiclemanufacturername)]
+query myQuery Vehicle { 
+	it.filter[it.vehicleManufacturer.code == "ADX"].forEach[println(vehicleManufacturer.name)]
 	""
-}   
+}

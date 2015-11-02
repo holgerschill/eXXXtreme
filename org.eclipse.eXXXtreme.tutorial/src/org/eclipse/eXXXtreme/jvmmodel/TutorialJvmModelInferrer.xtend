@@ -5,7 +5,6 @@ package org.eclipse.eXXXtreme.jvmmodel
 
 import com.google.inject.Inject
 import java.sql.Connection
-import java.sql.SQLException
 import java.util.List
 import org.eclipse.eXXXtreme.h2.H2MetaDataAccess
 import org.eclipse.eXXXtreme.tutorial.Model
@@ -31,47 +30,48 @@ class TutorialJvmModelInferrer extends AbstractModelInferrer {
 	def dispatch void infer(Model model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
 		val path = getProjectPath(model)
 		acceptor.accept(model.toClass(model.name)) [
-		// add super type with useful methods, e.g. loadTable (see below)
-   			superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.DBAccess")
-   			members += model.toField("conn", typeRef(Connection))[
-   				static = true
-   				// getConnection is defined in the super type 
-   				initializer = '''getConnection("«path + "/" + model.h2Path»")'''
-   			]
-   			
-			for(query : model.queries) {
+			// add super type with useful methods, e.g. loadTable (see below)
+			superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.DBAccess")
+			members += model.toField("conn", typeRef(Connection)) [
+				static = true
+				// getConnection is defined in the super type 
+				initializer = '''getConnection("«path + "/" + model.h2Path»")'''
+			]
+			// TODO add main method
+
+			for (query : model.queries) {
 				val tableType = typeRef(List, query.table)
-				members += query.toField("_" + query.name+ "TableContent", tableType) [
+				members += query.toField("_" + query.name + "TableContent", tableType) [
 					static = true
 					// we can call loadTable since it's defined in our super type
 					initializer = '''loadTable(conn, «query.table».class)'''
 				]
-				members += query.toMethod(query.name, inferredType)[
+				members += query.toMethod(query.name, inferredType) [
 					static = true
 					parameters += query.toParameter("it", typeRef(List, query.table))
 					body = query.expression
 				]
 				val returnType = inferredType(query.expression)
-				members+= query.toMethod(query.name, returnType) [
+				members += query.toMethod(query.name, returnType) [
 					static = true
 					body = '''return «model.name».«query.name»(«model.name»._«query.name»TableContent);'''
 				]
-				
+
 			}
-   		]
-		
-   		for(tableInfo : getTableInfos(path + "/" + model.h2Path)){
-   			acceptor.accept(model.toClass(tableInfo.name))[
-   				// all our table representations implement a common interface
-   				superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.ITable")
-   				for(column : tableInfo.columns){
-   					val columnName = column.name.toLowerCase
-   					members += model.toField(columnName, typeRef(column.typeName))
-   					members += model.toGetter(columnName, typeRef(column.typeName))
-   					members += model.toSetter(columnName, typeRef(column.typeName))
-   				}
-   			]
-   		}
-   	}
-	
+		]
+
+		for (tableInfo : getTableInfos(path + "/" + model.h2Path)) {
+			acceptor.accept(model.toClass(tableInfo.name)) [
+				// all our table representations implement a common interface
+				superTypes += typeRef("org.eclipse.eXXXtreme.tutorial.ITable")
+				for (column : tableInfo.columns) {
+					val columnName = column.name.toFirstLower
+					members += model.toField(columnName, typeRef(column.typeName))
+					members += model.toGetter(columnName, typeRef(column.typeName))
+					members += model.toSetter(columnName, typeRef(column.typeName))
+				}
+			]
+		}
+	}
+
 }
