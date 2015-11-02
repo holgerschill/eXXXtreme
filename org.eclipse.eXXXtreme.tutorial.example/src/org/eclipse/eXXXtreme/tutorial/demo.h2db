@@ -1,6 +1,34 @@
 DBName Car h2File "db/car" 
-   
-query myQuery Vehicle { 
-	it.filter[it.vehicleManufacturer.code == "ADX"].forEach[println(vehicleManufacturer.name)]
-	""
+
+/**
+ * The longest name of all tested manufacturers
+ */
+query longestName Manufacturer { 
+	val result = Assertions.unknown
+	Assertions.checkResult(result, 'Mitsubishi Motors Co')
+}
+
+/**
+ * The avg horse power of all tested vehicles
+ */
+query avgHorsePower Vehicle {
+	val result = Assertions.unknown
+	Assertions.checkResult(result, java.math.BigInteger.valueOf(283))
+}
+
+/**
+ * The name and horsepower of the vehicle with the most power
+ */
+query maxHorsePowerVehicle Vehicle {
+	val result = Assertions.unknown 
+	Assertions.checkResult(result, 'PT4 (730PS)')
+}
+
+/**
+ * The make of the vehicle that was tested with the highest avg of CO (coefa, coefb, coefc).
+ */
+query avgCO2 TestResults {
+	val result = Assertions.unknown
+	// Uhoh, it's not Volkswagen
+	Assertions.checkResult(result, 'MASERATI')
 }
