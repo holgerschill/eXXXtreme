@@ -3,7 +3,7 @@ query myQuery Person {
 	 for(person : it){
 	 	println(person.name + " " + person.lastname + " " + person.adress.city) 
 	 }    
-	 return it  
+	 return it
 } 
    
 query myQuery2 Adress {
